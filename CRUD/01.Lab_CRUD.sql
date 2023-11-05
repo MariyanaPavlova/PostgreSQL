@@ -70,6 +70,16 @@ VALUES
 
 SELECT * from employees;
 
+--
+Запиши в таблищама test_person като първо и второ име, 
+това което върне селекта от employees:
+
+INSERT INTO test_person(first_name, last_name)
+SELECT 
+	first_name,
+	last_name
+FROM 
+	employees;
 
 --05.Update Employees Salary
 UPDATE employees
