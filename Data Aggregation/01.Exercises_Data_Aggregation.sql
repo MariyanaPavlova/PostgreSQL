@@ -174,7 +174,28 @@ HAVING AVG(salary) > 30000
 ORDER BY department_id
 
 --18.*Nested CASE Conditions
+CREATE VIEW view_performance_rating
+AS SELECT
+	first_name,
+	last_name,
+	job_title,
+	salary,
+	department_id,
+	CASE
+		WHEN salary >=25000 AND job_title LIKE 'Senior%' THEN 'High-performing Senior'
+		WHEN salary >=25000 AND job_title NOT LIKE 'Senior%' THEN 'High-performing Employee'
+		ELSE 'Average-performing'
+	END AS performance_rating
+
+FROM employees
 
 --19.* Foreign Key
+CREATE TABLE employees_projects (
+	id INT PRIMARY KEY,
+	employee_id INT,
+	project_id INT,
+	
+	FOREIGN KEY (employee_id) REFERENCES employees(id),
+	FOREIGN KEY (project_id) REFERENCES projects(id)
+);
 
---20.* JOIN Tables
