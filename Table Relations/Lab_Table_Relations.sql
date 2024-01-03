@@ -19,13 +19,10 @@ SELECT
 	v.driver_id,
 	v.vehicle_type,
 	concat(c.first_name, ' ', c.last_name) AS "driver_name"
-
-
 FROM 
 	vehicles AS v JOIN
 	campers AS c ON
 	v.driver_id = c.id
-	
 	
 --03
 SELECT 
@@ -33,13 +30,10 @@ SELECT
 	r.end_point,
 	c.id,
 	concat(c.first_name, ' ', c.last_name) AS "leader_name"
-
-
 FROM 
 	routes AS r JOIN
 	campers AS c ON
 	r.leader_id = c.id
-
 
 --04
 CREATE TABLE mountains(
