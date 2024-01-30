@@ -1,5 +1,5 @@
 
---01
+--01.Booked for Nights
 SELECT 
 	concat(a.address, ' ', a.address_2) AS apartment_address,
 	b.booked_for AS nights
@@ -8,7 +8,7 @@ JOIN bookings AS b
 ON a.booking_id = b.booking_id --USING(booking_id)
 order by a.apartment_id ASC;
 
---02
+--02.First 10 Apartments Booked At
 SELECT 
 	a.name,
 	a.country,
@@ -18,7 +18,7 @@ LEFT JOIN bookings AS b
 ON a.booking_id = b.booking_id --USING(booking_id)
 LIMIT 10
 
---03
+--03.First 10 Customers with Bookings
 SELECT 
 	b.booking_id,
 	b.starts_at::date,
@@ -32,7 +32,7 @@ ON c.customer_id = b.customer_id  --USING(customer_id)
 ORDER BY customer_name ASC
 LIMIT 10
 
---04
+--04.Booking Information
 SELECT 
 	b.booking_id,
 	a.name AS apartment_owner,
@@ -50,7 +50,7 @@ ORDER BY
 	apartment_owner,
 	customer_name
 	
---06
+--06.Unassigned Apartments
 SELECT 
 	b.booking_id,
 	b.apartment_id,
@@ -61,7 +61,7 @@ JOIN customers AS c
 USING(customer_id)
 WHERE b.apartment_id IS NULL
 
---07
+--07.Bookings Made by Lead
 SELECT 
 	b.apartment_id,
 	b.booked_for,
@@ -73,7 +73,7 @@ INNER JOIN customers AS c
 USING(customer_id)
 WHERE c.job_type = 'Lead'
 
---08
+--08.Hahn`s Bookings
 SELECT 
 	count(b.booking_id)
 
@@ -83,7 +83,7 @@ INNER JOIN customers AS c
 USING(customer_id)
 WHERE c.last_name = 'Hahn'
 
---09
+--09.Total Sum of Nights
 SELECT 
 	a.name,
 	sum(b.booked_for)
@@ -95,7 +95,7 @@ USING(apartment_id)
 GROUP BY a.name
 ORDER BY a.name ASC
 
---10
+--10.Popular Vacation Destination
 SELECT 
 	a.country, 
 	COUNT(b.booking_id) AS booking_count
@@ -110,7 +110,7 @@ GROUP BY a.country
 ORDER BY booking_count DESC
 
 
---11
+--11.Bulgaria's Peaks Higher than 2835 Meters
 SELECT
 	mc.country_code,
 	m.mountain_range,
@@ -127,7 +127,7 @@ WHERE
 	mc.country_code = 'BG'
 ORDER BY p.elevation DESC
 
---12
+--12.Count Mountain Ranges
 SELECT
 	country_code,
 	count(country_code) AS mountain_range_count
@@ -138,7 +138,7 @@ WHERE country_code IN ('US', 'RU', 'BG')
 GROUP BY country_code
 ORDER BY mountain_range_count DESC
 
---13
+--13.Rivers in Africa
 SELECT
 	c.country_name,
 	r.river_name
@@ -152,7 +152,7 @@ WHERE c.continent_code = 'AF'
 ORDER BY c.country_name 
 LIMIT 5
 
---14
+--14.Minimum Average Area Across Continents
 SELECT
 	MIN(average) AS min_average_area
 FROM (
@@ -162,7 +162,7 @@ SELECT
 FROM countries
 GROUP BY continent_code) AS average_area
 
---15
+--15.Countries Without Any Mountains
 SELECT
 	count(c.country_name) AS countries_without_mountains
 FROM countries AS c
@@ -170,7 +170,7 @@ LEFT JOIN mountains_countries AS mc
 ON mc.country_code = c.country_code
 WHERE mc.mountain_id IS NULL
 
---18
+--18.Retrieving Information about Indexes
 SELECT
 	tablename,
 	indexname,
@@ -181,7 +181,7 @@ ORDER BY
 	tablename ASC,
 	indexname ASC
 	
---16
+--16.Monasteries by Country
 CREATE TABLE monasteries 
 (
 	id SERIAL PRIMARY KEY,
