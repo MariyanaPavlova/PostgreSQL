@@ -60,9 +60,10 @@ FROM view_river_info;
 
 --06.Replace A
 SELECT 
-	capital,
-	TRANSLATE(capital, 'áãåçéíñóú', 'aaaceinou') AS translated_name
-FROM countries;
+	Replace(mountain_range, 'a', '@') AS "replace_a",
+	Replace(mountain_range, 'A', '$') AS "replace_A"
+      
+FROM mountains;
 
 --07.Translate
 SELECT 
