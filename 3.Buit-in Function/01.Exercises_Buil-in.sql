@@ -67,9 +67,9 @@ FROM mountains;
 
 --07.Translate
 SELECT 
-	continent_name,
-	LTRIM(continent_name) AS trim
-FROM continents;
+	capital,
+	TRANSLATE(capital, 'áãåçéíñóú', 'aaaceinou') AS translated_name
+FROM countries;
 
 --08.LEADING
 SELECT 
@@ -77,6 +77,10 @@ SELECT
 	RTRIM(continent_name) AS trim
 FROM continents;
 
+SELECT 
+	continent_name,
+	LTRIM(continent_name) AS trim
+FROM continents;
 --09.TRAILING
 SELECT 
 	continent_name,
