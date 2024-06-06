@@ -213,7 +213,10 @@ CREATE TABLE item_types(
 	id SERIAL PRIMARY KEY,
 	item_type_name VARCHAR(50)
 );
-
+CREATE TABLE cities(
+	id SERIAL PRIMARY KEY,
+	city_name VARCHAR(50)
+);
 CREATE TABLE items(
 	id SERIAL PRIMARY KEY,
 	item_name VARCHAR(50),
@@ -224,15 +227,10 @@ CREATE TABLE items(
 	REFERENCES item_types(id)
 );
 
-CREATE TABLE cities(
-	id SERIAL PRIMARY KEY,
-	city_name VARCHAR(50)
-);
-
 CREATE TABLE customers(
 	id SERIAL PRIMARY KEY,
 	customer_name VARCHAR(50),
-	birthdate DATE,
+	birthday DATE,
 	city_id INT,
 	
 	CONSTRAINT fk_customers_cities
@@ -249,18 +247,18 @@ CREATE TABLE orders(
 	REFERENCES customers(id)
 );
 
-CREATE TABLE orders_items(
+CREATE TABLE order_items(
 	order_id INT,
 	item_id INT,
 	
-	CONSTRAINT pk_orders_items
+	CONSTRAINT pk_order_items
 	PRIMARY KEY(order_id, item_id), --композитен ключ
 	
-	CONSTRAINT fk_orders_items_items
+	CONSTRAINT fk_order_items_items
 	FOREIGN KEY (item_id)
 	REFERENCES items(id),
 	
-	CONSTRAINT fk_orders_items_orders
+	CONSTRAINT fk_order_items_orders
 	FOREIGN KEY (order_id)
 	REFERENCES orders(id)
 );
