@@ -310,7 +310,7 @@ CREATE TABLE customers(
 
 CREATE TABLE contacts(
 	id SERIAL PRIMARY KEY,
-	contact_name VARCHAR(50),
+	customer_name VARCHAR(50),
 	phone VARCHAR(50),
 	email VARCHAR(50),
 	customer_id INT,
