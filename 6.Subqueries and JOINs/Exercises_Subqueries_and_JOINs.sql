@@ -139,18 +139,23 @@ GROUP BY country_code
 ORDER BY mountain_range_count DESC
 
 --13.Rivers in Africa
-SELECT
+select 
 	c.country_name,
 	r.river_name
-	
-FROM countries AS c
-LEFT JOIN countries_rivers AS cr
-ON cr.country_code = c.country_code 
-LEFT JOIN rivers AS r
-ON cr.river_id = r.id
-WHERE c.continent_code = 'AF'
-ORDER BY c.country_name 
-LIMIT 5
+
+from continents as cont
+join countries as c
+using (continent_code)
+
+left join countries_rivers as cr
+using (country_code)
+
+full join rivers as r
+on r.id = cr.river_id
+
+where cont.continent_name = 'Africa'
+order by c.country_name ASC
+limit 5
 
 --14.Minimum Average Area Across Continents
 SELECT
