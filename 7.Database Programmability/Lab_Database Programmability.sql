@@ -16,8 +16,10 @@ $$
  	DECLARE
  		first_name ALIAS FOR $1;
  		last_name ALIAS FOR $2;
+		greeting varchar
  	BEGIN
-		RETURN concat($1, ' ', $2);
+		greeting := 'Hello';
+		RETURN concat(greeting, ' ', $1, ' ', $2);
 	END
 $$
 LANGUAGE plpgsql;
