@@ -96,47 +96,46 @@ GROUP BY a.name
 ORDER BY a.name ASC
 
 --10.Popular Vacation Destination
-SELECT 
-	a.country, 
-	COUNT(b.booking_id) AS booking_count
-	
-FROM bookings AS b
+select 
+	a.country,
+	count(b.booking_id) as booking_count
+from apartments as a
+inner join bookings as b
+using (apartment_id)
 
-JOIN apartments AS a
-USING(apartment_id)
 WHERE b.booked_at > '2021-05-18 07:52:09.904+03'
 	AND b.booked_at < '2021-09-17 19:48:02.147+03'
-GROUP BY a.country
-ORDER BY booking_count DESC
+group by a.country
+order by booking_count desc
 
 
 --11.Bulgaria's Peaks Higher than 2835 Meters
-SELECT
-	mc.country_code,
+select 
+ 	mc.country_code,
 	m.mountain_range,
 	p.peak_name,
 	p.elevation
-FROM mountains_countries AS mc
-JOIN mountains as m
-on mc.mountain_id = m.id
-JOIN peaks as p
+from mountains_countries as mc
+join mountains as m
+on m.id = mc.mountain_id
+join peaks as p
 on p.mountain_id = m.id
-WHERE 
-	p.elevation > 2835 
-	AND 
-	mc.country_code = 'BG'
-ORDER BY p.elevation DESC
+
+where p.elevation > 2835 and mc.country_code = 'BG'
+order by p.elevation desc
 
 --12.Count Mountain Ranges
-SELECT
-	country_code,
-	count(country_code) AS mountain_range_count
-FROM mountains_countries AS ms
-JOIN mountains AS m
-ON m.id = ms.mountain_id
-WHERE country_code IN ('US', 'RU', 'BG')
-GROUP BY country_code
-ORDER BY mountain_range_count DESC
+select 
+ 	mc.country_code,
+	count(m.mountain_range) as mountain_range_count
+	
+from mountains_countries as mc
+join mountains as m
+on m.id = mc.mountain_id
+
+where mc.country_code in ('US', 'RU', 'BG')
+GROUP by mc.country_code 
+ORDER by mountain_range_count desc
 
 --13.Rivers in Africa
 select 
