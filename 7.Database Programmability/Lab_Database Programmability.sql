@@ -27,6 +27,19 @@ LANGUAGE plpgsql;
 SELECT fn_full_name('Kumcho', 'Valcho')
 
 ==============
+CREATE OR REPLACE FUNCTION fn_name_len(name varchar)
+RETURNS int AS
+$$
+	BEGIN
+		RETURN length(name);
+	END;
+$$
+LANGUAGE plpgsql
+;
+
+SELECT * FROM fn_name_len('koko')
+	
+=============	
 CREATE OR REPLACE FUNCTION fn_full_name(first_name VARCHAR, last_name VARCHAR)
 RETURNS VARCHAR AS
 $$
