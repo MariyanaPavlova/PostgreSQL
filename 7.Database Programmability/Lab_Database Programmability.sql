@@ -1,5 +1,15 @@
 
 --functions
+CREATE OR REPLACE FUNCTION fn_full_name(varchar, varchar)
+RETURNS varchar AS
+$$
+	BEGIN
+		return concat($1, ' ', $2);
+	END;
+$$
+LANGUAGE plpgsql
+;
+==============
 CREATE OR REPLACE FUNCTION fn_full_name(VARCHAR, VARCHAR)
 RETURNS VARCHAR AS
 $$
@@ -14,7 +24,7 @@ LANGUAGE plpgsql;
 
 SELECT fn_full_name('Kumcho', 'Valcho')
 
---
+==============
 CREATE OR REPLACE FUNCTION fn_full_name(first_name VARCHAR, last_name VARCHAR)
 RETURNS VARCHAR AS
 $$
