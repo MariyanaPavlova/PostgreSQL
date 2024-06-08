@@ -82,7 +82,17 @@ $$
 
 $$
 LANGUAGE plpgsql;
- 
+==================
+CREATE OR REPLACE FUNCTION fn_get_country()
+RETURNS table(id int, name varchar) AS
+$$
+	BEGIN
+		return query(select * from country)
+	END;
+$$
+LANGUAGE plpgsql
+
+	
 --proceducres - манипулират данните в базите, не връщат с-т
 CREATE PROCEDURE sp_add_person(first_name VARCHAR, last_name VARCHAR, city_name VARCHAR)
 AS
