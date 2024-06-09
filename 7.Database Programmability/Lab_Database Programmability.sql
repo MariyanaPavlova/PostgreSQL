@@ -10,6 +10,19 @@ $$
 LANGUAGE plpgsql
 ;
 ==============
+	
+--functions
+CREATE OR REPLACE FUNCTION fn_get_city_id(IN city_name varchar, OUT city_id int)
+AS
+$$
+	BEGIN
+		select id from country where country_name = city_id INTO city_id;
+	END;
+$$
+LANGUAGE plpgsql
+
+
+================
 CREATE OR REPLACE FUNCTION fn_full_name(VARCHAR, VARCHAR)
 RETURNS VARCHAR AS
 $$
