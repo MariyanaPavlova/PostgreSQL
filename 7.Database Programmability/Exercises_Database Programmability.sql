@@ -54,7 +54,7 @@ SELECT * FROM fn_is_word_comprised('aebc', 'cba');
 
 
 --04.Game Over
-CREATE or REPLACE FUNCTION fn_is_game_over(
+CREATE or REPLACE FUNCTION difficulty_level(
 	is_game_over boolean
 )
 RETURNS table(name varchar, game_type_id int, is_finished boolean) 
@@ -74,6 +74,13 @@ $$
 LANGUAGE plpgsql;
 
 select *from fn_is_game_over(false);
+	
+select 
+	name,
+	game_type_id,
+	is_finished
+from games
+where is_finished = true
 
 
 --05.Difficulty Level
