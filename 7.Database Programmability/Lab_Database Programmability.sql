@@ -103,7 +103,7 @@ CREATE OR REPLACE FUNCTION fn_get_country()
 RETURNS table(id int, name varchar) AS
 $$
 	BEGIN
-		return query(select * from country)
+		return query(select * from country);
 	END;
 $$
 LANGUAGE plpgsql
