@@ -84,21 +84,19 @@ where is_finished = true
 
 
 --05.Difficulty Level
-CREATE or REPLACE FUNCTION fn_difficulty_level(
-	level varchar
-)
+CREATE or REPLACE FUNCTION fn_difficulty_level(level int)
 RETURNS varchar
 AS
 $$
-DECLARE deff_level varchar;
+DECLARE diff_level varchar;
 
 	BEGIN
 		if level <= 40 THEN
-			deff_level :=  "Normal Difficulty";
+			diff_level :=  'Normal Difficulty';
 		elseif level BETWEEN 41 and 60 THEN
-			deff_level :=  "Nightmare Difficulty";
+			diff_level :=  'Nightmare Difficulty';
 		else
-			deff_level :=  "Hell Difficulty";
+			diff_level :=  'Hell Difficulty';
 		end if;
 		RETURN diff_level;
 	END;
