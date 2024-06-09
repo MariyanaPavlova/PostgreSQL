@@ -54,27 +54,26 @@ SELECT * FROM fn_is_word_comprised('aebc', 'cba');
 
 
 --04.Game Over
-CREATE OR REPLACE FUNCTION fn_is_game_over(is_game_over BOOLEAN)
-RETURNS TABLE(
-	name VARCHAR(50),
-	game_type_id INT,
-	is_finished BOOLEAN
+CREATE or REPLACE FUNCTION fn_is_game_over(
+	is_game_over boolean
 )
+RETURNS table(name varchar, game_type_id int, is_finished boolean) 
 AS
 $$
-BEGIN
-	RETURN QUERY 
-	SELECT 
-		g.name,
-		g.game_type_id,
-		g.is_finished
-	FROM games AS g
-	WHERE g.is_finished = is_game_over;
-END;
+	BEGIN
+		RETURN query 
+		select 
+			g.name,
+			g.game_type_id,
+			g.is_finished
+		from games as g
+		where g.is_finished = is_game_over;
+	
+	END;
 $$
 LANGUAGE plpgsql;
 
-SELECT * from fn_is_game_over(true);
+select *from fn_is_game_over(false);
 
 
 --05.Difficulty Level
