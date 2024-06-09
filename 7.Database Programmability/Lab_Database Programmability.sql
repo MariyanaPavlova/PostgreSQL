@@ -12,11 +12,14 @@ LANGUAGE plpgsql
 ==============
 	
 --functions
-CREATE OR REPLACE FUNCTION fn_get_city_id(IN city_name varchar, OUT city_id int)
-AS
-$$
+CREATE OR REPLACE FUNCTION fn_get_city_id(city_name varchar, city_id int)
+--вариант 2 --CREATE OR REPLACE FUNCTION fn_get_city_id(IN city_name varchar, OUT city_id int) когато се връщат повече п-ри
+RETURN int AS --вар.2 е без RETURN caмо AS
+$$	
+	DECLARE city_id int;  --вар.2 е без това
 	BEGIN
-		select id from country where country_name = city_name INTO city_id;
+		select id from country where country_name = city_name INTO city_id; --вар.2 INTO се запазва
+		RETURN city_id; --вар.2 е без това
 	END;
 $$
 LANGUAGE plpgsql
@@ -81,8 +84,8 @@ RETURNS INT AS
 $$
 	DECLARE town_count INT;
 	BEGIN
-		SELECT
-			count(*)
+		SELECT 
+			count(*) --INTO town_count
 		FROM employees as e
 			JOIN addresses as a
 			USING(address_id)
