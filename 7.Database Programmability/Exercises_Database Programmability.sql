@@ -172,23 +172,27 @@ CALL sp_retrieving_holders_with_balance_higher_than(20000)
 
 
 --08.Deposit Money
-CREATE OR REPLACE PROCEDURE sp_deposit_money(
-		account_id INT,
-		money_amount NUMERIC)
+create or replace procedure sp_deposit_money(
+	account id int,
+	money_amount NUMERIC()
+)
 AS
 $$
 BEGIN
-	UPDATE accounts
-	SET balance = balance + money_amount
-	WHERE account_id = id;
+	update accounts
+	SET 
+	balance = balance + money_amount
+	where 
+	id = account_id;
 	
 END;
 $$
 LANGUAGE plpgsql;
 
-CALL sp_deposit_money(1, 200);
 
-SELECT * FROM accounts WHERE id=1;
+CALL sp_deposit_money(1,200)
+select * from accounts 
+where id = 1
 
 
 --09.Withdraw Money
