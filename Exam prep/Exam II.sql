@@ -72,8 +72,15 @@ set condition = 'C'
 where (mileage >= 800000 or mileage is NULL)
 	and year <= 2010
 	and make != 'Mercedes-Benz'
-	
-	
+
+3--
+Delete from volunteers
+where department_id = 2;
+
+Delete from volunteers_departments
+where department_name = 'Education program assistant';
+
+
 Section 3.
 -------------
 5--
