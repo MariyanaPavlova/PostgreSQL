@@ -74,11 +74,11 @@ where (mileage >= 800000 or mileage is NULL)
 	and make != 'Mercedes-Benz'
 
 3--
-Delete from volunteers
-where department_id = 2;
-
-Delete from volunteers_departments
-where department_name = 'Education program assistant';
+delete 	
+from clients
+where length(full_name) > 3
+and id not in(
+	select client_id from courses)
 
 
 Section 3.
