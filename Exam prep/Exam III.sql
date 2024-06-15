@@ -65,6 +65,41 @@ create table creators_board_games(
 
 Section 2.
 -----------
+insert into board_games(name,release_year,rating,category_id,publisher_id,players_range_id)
+VALUES ('Deep Blue', 2019, 5.67, 1, 15, 7),
+		('Paris', 2016, 9.78, 7, 1, 5),
+		('Catan', 2021, 9.87, 7, 13, 6),
+		('Bleeding Kansas', 2020, 3.25, 3, 7, 4),
+		('One Small Step', 2019, 5.75, 5, 9, 2);
+
+insert into publishers(name, address_id, website, phone)
+VALUES ('Agman Games', 5, 'www.agmangames.com', '+16546135542'),
+		('Amethyst Games', 7, 'www.amethystgames.com', '+15558889992'),
+		('BattleBooks', 13, 'www.battlebooks.com', '+12345678907');
+
+update--
+update players_ranges
+set max_players = max_players + 1
+
+where max_players =2 and 
+	min_players = 2;
+
+UPDATE board_games
+SET name = name || ' V2'
+WHERE release_year >= 2020;
+
+del--0точки
+DELETE FROM publishers
+WHERE address_id IN (
+    SELECT id
+    FROM addresses
+    WHERE town LIKE 'L%'
+);
+
+-- Delete records from addresses table
+DELETE FROM addresses
+WHERE town LIKE 'L%';	
+	
 3.5--
 SELECT 
 	name, 
