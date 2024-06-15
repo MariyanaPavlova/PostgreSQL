@@ -95,10 +95,17 @@ WHERE address_id IN (
     FROM addresses
     WHERE town LIKE 'L%'
 );
+DELETE FROM publishers
+WHERE address_id IN (
+    SELECT id
+    FROM addresses
+    WHERE town LIKE 'L%'
+);
 
 -- Delete records from addresses table
 DELETE FROM addresses
-WHERE town LIKE 'L%';	
+WHERE town LIKE 'L%';
+
 	
 3.5--
 SELECT 
