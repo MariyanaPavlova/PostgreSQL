@@ -1,1 +1,1 @@
-Learing PostgreSQL from SoftUni - https://softuni.bg/
+Learing PostgreSQL course from SoftUni: https://softuni.bg/
